@@ -19,5 +19,12 @@ namespace TechChallenge_Fase1.Repository
         {
             // Cadastro no database
         }
+
+        public void DeletarUsuario(int id) 
+        {
+            var usuario = GetUsuario(id);
+            _dbContext.Set<Usuario>().Remove(usuario);
+            _dbContext.SaveChanges();
+        }
     }
 }

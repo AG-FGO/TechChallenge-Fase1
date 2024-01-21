@@ -27,5 +27,12 @@ namespace TechChallenge_Fase1.Controllers
         {
             return null;
         }
+
+        [HttpDelete("{id}")]
+        public IActionResult DeletarUsuario([FromRoute] int id)
+        {
+            _usuarioRepository.DeletarUsuario(id);
+            return Ok("Usuario deletado com sucesso");
+        }
     }
 }
