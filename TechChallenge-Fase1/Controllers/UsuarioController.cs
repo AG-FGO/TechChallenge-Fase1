@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using TechChallenge_Fase1.Interfaces;
 using TechChallenge_Fase1.Repository;
 
 namespace TechChallenge_Fase1.Controllers
@@ -9,16 +10,16 @@ namespace TechChallenge_Fase1.Controllers
     {
 
         private readonly ILogger<UsuarioController> _logger;
-        private readonly UsuarioRepository _usuarioRepository;
-        public UsuarioController(ILogger<UsuarioController> logger, UsuarioRepository usuarioRepository)
+        private readonly IUsuarioRepository _usuarioRepository;
+        public UsuarioController(ILogger<UsuarioController> logger, IUsuarioRepository usuarioRepository)
         {
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
-            _usuarioRepository = usuarioRepository ?? throw new ArgumentNullException(nameof(usuarioRepository));
+            _usuarioRepository = usuarioRepository;
         }
 
         [HttpGet]
         public ActionResult GetUsuario(int id) {
-            var usuario = _usuarioRepository.GetUsuario(id);
+            var usuario = _usuarioRepository.ObterPorId(id);
             return Ok(usuario);
         }
 
@@ -31,7 +32,7 @@ namespace TechChallenge_Fase1.Controllers
         [HttpDelete("{id}")]
         public IActionResult DeletarUsuario([FromRoute] int id)
         {
-            _usuarioRepository.DeletarUsuario(id);
+            _usuarioRepository.Excluir(id);
             return Ok("Usuario deletado com sucesso");
         }
     }
