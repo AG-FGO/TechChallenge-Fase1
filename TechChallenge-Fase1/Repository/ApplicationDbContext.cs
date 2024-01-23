@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using TechChallenge_Fase1.Model;
 
 namespace TechChallenge_Fase1.Repository
 {
@@ -21,5 +22,7 @@ namespace TechChallenge_Fase1.Repository
         {
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);
         }
+
+        public DbSet<Usuario> Usuario { get; set; }
     }
 }
