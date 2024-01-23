@@ -4,9 +4,9 @@ namespace TechChallenge_Fase1.Repository
 {
     public class TituloAcaoRepository
     {
-        private readonly DbContext _dbContext; // DbContext é um exemplo
+        private readonly ApplicationDbContext _dbContext; // DbContext é um exemplo
 
-        public TituloAcaoRepository(DbContext dbContext)
+        public TituloAcaoRepository(ApplicationDbContext dbContext)
         {
             _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
         }

@@ -1,9 +1,12 @@
-﻿namespace TechChallenge_Fase1.Model
+﻿using TechChallenge_Fase1.Enums;
+
+namespace TechChallenge_Fase1.Model
 {
-    public class Usuario
+    public class Usuario : Comum
     {
-        public int Id { get; set; }
         public string Nome { get; set; }
+        public string Senha { get; set; }
+        public TipoPermissao Permissao { get; set; }
         public Carteira Carteira { get; set; }
 
         public Usuario() { }

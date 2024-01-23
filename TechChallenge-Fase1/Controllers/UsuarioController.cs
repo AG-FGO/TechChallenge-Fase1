@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using TechChallenge_Fase1.Enums;
+using TechChallenge_Fase1.Interfaces;
 using TechChallenge_Fase1.Repository;
 
 namespace TechChallenge_Fase1.Controllers
@@ -9,29 +12,34 @@ namespace TechChallenge_Fase1.Controllers
     {
 
         private readonly ILogger<UsuarioController> _logger;
-        private readonly UsuarioRepository _usuarioRepository;
-        public UsuarioController(ILogger<UsuarioController> logger, UsuarioRepository usuarioRepository)
+        private readonly IUsuarioRepository _usuarioRepository;
+        public UsuarioController(ILogger<UsuarioController> logger, IUsuarioRepository usuarioRepository)
         {
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
-            _usuarioRepository = usuarioRepository ?? throw new ArgumentNullException(nameof(usuarioRepository));
+            _usuarioRepository = usuarioRepository;
         }
 
+        [Authorize]
+        [Authorize(Roles = $"{Permissao.Administrador}, {Permissao.UsuarioComum}")]
         [HttpGet]
         public ActionResult GetUsuario(int id) {
-            var usuario = _usuarioRepository.GetUsuario(id);
+            var usuario = _usuarioRepository.ObterPorId(id);
             return Ok(usuario);
         }
 
+        [Authorize]
+        [Authorize(Roles = Permissao.Administrador)]
         [HttpPost]
         public ActionResult CadastrarUsuario()
         {
             return null;
         }
 
+        [Authorize]
         [HttpDelete("{id}")]
         public IActionResult DeletarUsuario([FromRoute] int id)
         {
-            _usuarioRepository.DeletarUsuario(id);
+            _usuarioRepository.Excluir(id);
             return Ok("Usuario deletado com sucesso");
         }
     }

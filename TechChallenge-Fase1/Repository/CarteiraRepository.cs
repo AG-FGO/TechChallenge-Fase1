@@ -4,9 +4,9 @@ namespace TechChallenge_Fase1.Repository
 {
     public class CarteiraRepository
     {
-        private readonly DbContext _dbContext; // DbContext é um exemplo
+        private readonly ApplicationDbContext _dbContext; // DbContext é um exemplo
 
-        public CarteiraRepository(DbContext dbContext)
+        public CarteiraRepository(ApplicationDbContext dbContext)
         {
             _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
         }
