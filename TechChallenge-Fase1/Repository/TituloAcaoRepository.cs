@@ -11,9 +11,9 @@ namespace TechChallenge_Fase1.Repository
             _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
         }
 
-        public List<TituloAcao> ListarAcoesDisponiveis() 
+        /*public List<TituloAcao> ListarAcoesDisponiveis() 
         {
             return _dbContext.Set<TituloAcao>().ToList();
-        }
+        }*/
     }
 }
