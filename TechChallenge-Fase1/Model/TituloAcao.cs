@@ -1,10 +1,11 @@
 ﻿namespace TechChallenge_Fase1.Model
 {
-    public class TituloAcao
+    public class Ativos
     {
         public int Id { get; set; }
-        public string Nome { get; set; }
-        public float Valor { get; set; }
-
+        public int IdCarteira { get; set; }
+        public int Quantidade { get; set; }
+        public DateTime DataCompra { get; set; }
+        public Acao Acao { get; set; }
     }
 }
