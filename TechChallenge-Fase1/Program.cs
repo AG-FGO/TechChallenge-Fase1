@@ -4,6 +4,7 @@ using Microsoft.OpenApi.Models;
 using System.Reflection;
 using System.Text;
 using TechChallenge_Fase1.Interfaces;
+using TechChallenge_Fase1.Logging;
 using TechChallenge_Fase1.Repository;
 using TechChallenge_Fase1.Services;
 
@@ -49,6 +50,13 @@ builder.Services.AddSwaggerGen(c =>
 builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
 builder.Services.AddDbContext<ApplicationDbContext>(ServiceLifetime.Scoped);
 builder.Services.AddScoped<ITokenService, TokenService>();
+
+builder.Logging.ClearProviders();
+builder.Logging.AddProvider(new CustomLoggerProvider(new CustomLoggerProviderConfiguration
+{
+    LogLevel = LogLevel.Information
+}));
+
 
 var configuration = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
 var key = Encoding.ASCII.GetBytes(configuration.GetValue<string>("Secret"));

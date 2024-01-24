@@ -15,16 +15,26 @@ namespace TechChallenge_Fase1.Controllers
         private readonly IUsuarioRepository _usuarioRepository;
         public UsuarioController(ILogger<UsuarioController> logger, IUsuarioRepository usuarioRepository)
         {
-            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+            _logger = logger;
             _usuarioRepository = usuarioRepository;
         }
 
         [Authorize]
         [Authorize(Roles = $"{Permissao.Administrador}, {Permissao.UsuarioComum}")]
         [HttpGet]
-        public ActionResult GetUsuario(int id) {
-            var usuario = _usuarioRepository.ObterPorId(id);
-            return Ok(usuario);
+        public ActionResult GetUsuario(int id) 
+        {
+            try
+            {
+                var usuario = _usuarioRepository.ObterPorId(id);
+                return Ok(usuario);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, $"Exception: {ex.Message}");
+                return BadRequest();
+            }
+            
         }
 
         [Authorize]
@@ -32,7 +42,8 @@ namespace TechChallenge_Fase1.Controllers
         [HttpPost]
         public ActionResult CadastrarUsuario()
         {
-            return null;
+            _logger.LogWarning("Cadastrando usuario");
+            return Ok("Usuario cadastrado com sucesso");
         }
 
         [Authorize]

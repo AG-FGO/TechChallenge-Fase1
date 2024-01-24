@@ -19,9 +19,9 @@ namespace TechChallenge_Fase1.Controllers
         [HttpGet]
         public IActionResult ListarAcoesDisponiveis()
         {
-            List<TituloAcao> acoes = _tituloAcaoRepository.ListarAcoesDisponiveis();
+            //List<TituloAcao> acoes = _tituloAcaoRepository.ListarAcoesDisponiveis();
 
-            return Ok(acoes);
+            return Ok();
         }
 
     }
