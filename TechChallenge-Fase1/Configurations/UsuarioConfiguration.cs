@@ -14,6 +14,9 @@ namespace TechChallenge_Fase1.Configurations
             builder.Property(u => u.Nome).HasColumnType("VARCHAR(100)").IsRequired();
             builder.Property(u => u.Permissao).HasConversion<int>().IsRequired();
             builder.Property(u => u.Senha).HasColumnType("VARCHAR(100)").IsRequired();
+
+            builder.HasOne(u => u.Carteira).WithOne(c => c.Usuario).HasForeignKey<Carteira>(c => c.UsuarioId)
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

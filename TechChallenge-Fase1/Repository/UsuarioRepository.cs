@@ -13,6 +13,16 @@ namespace TechChallenge_Fase1.Repository
             _dbContext = dbContext;
         }
 
+        public void CadastroSimples(Usuario usuario)
+        {
+            usuario.Permissao = Enums.TipoPermissao.UsuarioComum;
+            usuario.Carteira = new Carteira();
+            usuario.Carteira.Saldo = 1000;
+
+            _dbContext.Usuario.Add(usuario);
+            _dbContext.SaveChanges();
+        }
+
         public Usuario ObterPorNomeESenha(string nome, string senha)
         {
             return _dbContext.Usuario

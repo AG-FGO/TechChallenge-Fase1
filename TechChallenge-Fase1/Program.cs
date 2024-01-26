@@ -48,6 +48,8 @@ builder.Services.AddSwaggerGen(c =>
 });
 
 builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
+builder.Services.AddScoped<IAcaoRepository, AcaoRepository>();
+builder.Services.AddScoped<ICarteiraRepository, CarteiraRepository>();
 builder.Services.AddDbContext<ApplicationDbContext>(ServiceLifetime.Scoped);
 builder.Services.AddScoped<ITokenService, TokenService>();
 
