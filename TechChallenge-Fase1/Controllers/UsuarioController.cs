@@ -31,7 +31,7 @@ namespace TechChallenge_Fase1.Controllers
             {
                 _logger.LogInformation($"Buscado usuário por id: {id}");
 
-                var usuario = _usuarioRepository.ObterPorId(id);
+                var usuario = _usuarioRepository.ObterUsuarioDadosCompletos(id);
                 return Ok(usuario);
             }
             catch (Exception ex)
@@ -66,9 +66,9 @@ namespace TechChallenge_Fase1.Controllers
 
         [Authorize]
         [Authorize(Roles = $"{Permissao.Administrador}")]
-        [HttpDelete("{id}")]
+        [HttpDelete]
         [Route(nameof(DeletarUsuario))]
-        public IActionResult DeletarUsuario([FromRoute] int id)
+        public IActionResult DeletarUsuario(int id)
         {
             try
             {

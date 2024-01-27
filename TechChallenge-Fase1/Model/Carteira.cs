@@ -8,6 +8,8 @@
 
         public Usuario Usuario { get; set; }
 
-        public Carteira() { }
+        public Carteira() { 
+            Acoes = new List<Ativos>();
+        }
     }
 }

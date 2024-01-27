@@ -7,5 +7,10 @@
         public DateTime DataCompra { get; set; }
         public Acao Acao { get; set; }
         public Carteira Carteira { get; set; }
+
+        public Ativos()
+        {
+            Acao = new Acao();
+        }
     }
 }

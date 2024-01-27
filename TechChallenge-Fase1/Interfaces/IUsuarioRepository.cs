@@ -6,6 +6,8 @@ namespace TechChallenge_Fase1.Interfaces
     {
         Usuario ObterPorNomeESenha(string nome, string senha);
 
+        Usuario ObterUsuarioDadosCompletos(int id);
+
         void CadastroSimples(Usuario usuario);
     }
 }
