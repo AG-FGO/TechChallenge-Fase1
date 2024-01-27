@@ -24,5 +24,8 @@ namespace TechChallenge_Fase1.Repository
         }
 
         public DbSet<Usuario> Usuario { get; set; }
+        public DbSet<Carteira> Carteira { get; set; }
+        public DbSet<Acao> Acao { get; set; }
+        public DbSet<Ativos> Ativos { get; set; }
     }
 }

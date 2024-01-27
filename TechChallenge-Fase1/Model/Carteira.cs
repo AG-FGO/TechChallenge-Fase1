@@ -1,12 +1,15 @@
 ﻿namespace TechChallenge_Fase1.Model
 {
-    public class Carteira
+    public class Carteira : Comum
     {
-        public int Id { get; set; }
         public int UsuarioId { get; set; }
         public float Saldo { get; set; }
-        public List<Ativos> Acoes { get; set; }
+        public List<Ativos>? Acoes { get; set; }
 
-        public Carteira() { }
+        public Usuario Usuario { get; set; }
+
+        public Carteira() { 
+            Acoes = new List<Ativos>();
+        }
     }
 }
