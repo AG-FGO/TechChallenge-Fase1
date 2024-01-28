@@ -11,5 +11,12 @@
         public Carteira() { 
             Acoes = new List<Ativos>();
         }
+        public Carteira(int id,int usuarioId,float saldo)
+        {
+            Id = id;
+            UsuarioId = usuarioId;
+            Saldo = saldo;
+
+        }
     }
 }
