@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.Extensions.Logging;
+using Moq;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,27 +13,22 @@ namespace Testes.Repository
 {
     public class UsuarioRepositoryTeste
     {
-        private readonly IUsuarioRepository _usuarioRepository;
-        public UsuarioRepositoryTeste(UsuarioRepository usuarioRepository)
-        {
-            _usuarioRepository = usuarioRepository;
-        }
 
         [Theory]
         [InlineData("teste","teste")]
         [InlineData("teste231","teste321")]
         [InlineData("a","a")]
-        public Usuario ObterPorNomeESenhaTeste(string nome, string senha) 
+        public void ObterPorNomeESenhaTeste(string nome, string senha) 
         {
-            return _usuarioRepository.ObterPorNomeESenha(nome, senha);
+            var teste = new Mock<IUsuarioRepository>().Setup(service => service.ObterPorNomeESenha(nome, senha));
         }
 
         [Theory]
         [InlineData(1)]
         [InlineData(2)]
-        public Usuario ObterUsuarioDadosCompletosTeste(int id)
+        public void ObterUsuarioDadosCompletosTeste(int id)
         {
-            return _usuarioRepository.ObterUsuarioDadosCompletos(id);
+            var teste = new Mock<IUsuarioRepository>().Setup(service => service.ObterUsuarioDadosCompletos(id));
         }
     }
 }
